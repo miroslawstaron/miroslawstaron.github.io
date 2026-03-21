@@ -11,229 +11,362 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.toc-list {
+				columns: 2;
+				column-gap: 2rem;
+				margin-bottom: 0;
+			}
+
+			.pro-tip {
+				border-left: solid 4px #0969da;
+				font-style: italic;
+				margin: 0 0 1.5rem 0;
+				padding: 0.75rem 1rem;
+				background: rgba(9, 105, 218, 0.06);
+			}
+
+			.back-top {
+				display: inline-block;
+				margin-top: 1rem;
+				font-size: 0.95rem;
+				font-weight: 600;
+			}
+
+			.resource-note {
+				color: #6b7280;
+				font-size: 0.95rem;
+			}
+
+			@media screen and (max-width: 736px) {
+				.toc-list {
+					columns: 1;
+				}
+			}
+		</style>
 	</head>
-	<body class="is-preload">
+	<body class="is-preload" id="top">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+		<div id="wrapper">
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+			<div id="main">
+				<div class="inner">
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo"><strong>Miroslaw Staron</strong></a>
-									<ul class="icons">
-										<li><a href="https://github.com/miroslawstaron" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-										<li><a href="https://www.linkedin.com/in/miroslawstaron/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								<li><a href="https://scholar.google.com/citations?user=oMZ1ucgAAAAJ" class="icon brands fa-google"><span class="label">Google Scholar</span></a></li>
-										<h1>Writing – advice</h1>
-									</header>
+					<header id="header">
+						<a href="index.html" class="logo"><strong>Miroslaw Staron</strong></a>
+						<ul class="icons">
+							<li><a href="https://github.com/miroslawstaron" target="_blank" rel="noreferrer" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/miroslawstaron/" target="_blank" rel="noreferrer" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://scholar.google.com/citations?user=oMZ1ucgAAAAJ" target="_blank" rel="noreferrer" class="icon brands fa-google"><span class="label">Google Scholar</span></a></li>
+						</ul>
+					</header>
 
-									<p>This page contains advice on academic writing. I could probably give a lot of pointers about writing, but it is an individual process, so I will provide mostly links. This is not an official guide and there is probably much more to find on the internet than you can think. Having said this, the links below are the ones that I use myself and recommend my students.</p>
+					<section>
+						<header class="main">
+							<h1>Writing Advice</h1>
+						</header>
+						<p>This page is a practical guide for students writing empirical software engineering papers, theses, and dissertations. It is intentionally link-heavy: the goal is to help you find strong resources for each section of a paper and avoid preventable reviewer frustration.</p>
+						<p>I use this page as a compact writing companion. The advice below is not a universal formula, but it reflects the patterns I recommend most often in supervision and reviewing.</p>
+					</section>
 
-									<p>I use this page as a compendium, so please treat it as such. It is intended to help to get information about how to write different parts, not advice on style.</p>
+					<section>
+						<header class="major">
+							<h2>Table of Contents</h2>
+						</header>
+						<ul class="toc-list">
+							<li><a href="#research-discovery">Research &amp; Discovery</a></li>
+							<li><a href="#abstract">Abstract</a></li>
+							<li><a href="#introduction">Introduction</a></li>
+							<li><a href="#related-work">Related Work</a></li>
+							<li><a href="#research-design">Research Design</a></li>
+							<li><a href="#threats-to-validity">Threats to Validity</a></li>
+							<li><a href="#results">Results</a></li>
+							<li><a href="#discussion">Discussion</a></li>
+							<li><a href="#conclusions">Conclusions</a></li>
+							<li><a href="#examples">Examples</a></li>
+							<li><a href="#templates-tools">Templates &amp; Tools</a></li>
+							<li><a href="#ai-ethics">AI Ethics &amp; Integrity</a></li>
+							<li><a href="#other-resources">Other Resources</a></li>
+							<li><a href="#books">Books</a></li>
+						</ul>
+					</section>
 
-									<p>There are variations depending on the scientific text. That is natural and quite obvious. A 4 page short paper cannot contain as much as a 200 page dissertation. However, the difference is often in the quantity and in the scope of the text, therefore a lot of the text below is applicable to all kinds of scientific texts – starting from the bachelor thesis and ending in the dissertation.</p>
+					<hr class="major" />
 
-									<p>To start, I recommend to read this page about the types of academic writing: <a href="https://www.sydney.edu.au/students/writing/types-of-academic-writing.html">https://www.sydney.edu.au/students/writing/types-of-academic-writing.html</a></p>
+					<section id="research-discovery">
+						<h2>Research &amp; Discovery</h2>
+						<blockquote class="pro-tip">My tip: If you discover papers only at the end, your writing will sound late and defensive.</blockquote>
+						<p>Good writing starts before writing. Use discovery tools early to understand clusters, competing schools of thought, and which papers are central enough that reviewers will expect you to know them.</p>
+						<ul>
+							<li><a href="https://www.connectedpapers.com" target="_blank" rel="noreferrer">Connected Papers</a> for visualizing citation neighborhoods and research clusters.</li>
+							<li><a href="https://www.researchrabbit.ai" target="_blank" rel="noreferrer">ResearchRabbit</a> for AI-assisted discovery of related work and forward/backward citation exploration.</li>
+							<li><a href="https://scholar.google.com" target="_blank" rel="noreferrer">Google Scholar</a> for checking who cites a paper, how terminology varies, and whether your framing is still current.</li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<hr class="major" />
+					<hr class="major" />
 
-									<h2>Abstract</h2>
+					<section id="abstract">
+						<h2>Abstract</h2>
+						<blockquote class="pro-tip">My tip: The abstract is a trailer, not a summary. Show why the study matters before you drown the reader in detail.</blockquote>
+						<p>The abstract is the first quality filter for most readers and reviewers. In empirical software engineering, structured abstracts are often the safest option because they force clarity on motivation, method, results, and implications.</p>
+						<ul>
+							<li>Structured abstracts guide from EBSE Durham: <a href="https://ebse.webspace.durham.ac.uk/structured-abstracts/" target="_blank" rel="noreferrer">https://ebse.webspace.durham.ac.uk/structured-abstracts/</a></li>
+							<li>Instructions from Information and Software Technology: <a href="https://www.elsevier.com/journals/information-and-software-technology/0950-5849/guide-for-authors" target="_blank" rel="noreferrer">https://www.elsevier.com/journals/information-and-software-technology/0950-5849/guide-for-authors</a></li>
+							<li>Psychology-oriented advice on abstracts: <a href="http://www.unice.fr/sg/authors/abstracts.htm" target="_blank" rel="noreferrer">http://www.unice.fr/sg/authors/abstracts.htm</a></li>
+							<li>Impact-focused advice from Enago: <a href="https://www.enago.com/academy/tips-writing-impactful-structured-abstract/" target="_blank" rel="noreferrer">https://www.enago.com/academy/tips-writing-impactful-structured-abstract/</a></li>
+						</ul>
+						<p class="resource-note">Broken-link audit note: the old Durham PDF now redirects to the EBSE site root, so I replaced it with the live Structured Abstracts page.</p>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<p>The first part of the paper is the abstract. Here I strongly recommend using the structured abstract model. It is often used in medicine, but software engineering has adopted it a lot also.</p>
+					<hr class="major" />
 
-									<ul>
-										<li>The most basic template: <a href="https://community.dur.ac.uk/ebse/resources/notes/sa/Structured_Abstract_Template.pdf">https://community.dur.ac.uk/ebse/resources/notes/sa/Structured_Abstract_Template.pdf</a></li>
-										<li>Instructions from Information and software technology: <a href="https://www.elsevier.com/journals/information-and-software-technology/0950-5849/guide-for-authors">https://www.elsevier.com/journals/information-and-software-technology/0950-5849/guide-for-authors</a> – the example is a bit into the page (scroll down).</li>
-										<li>From psychology: <a href="http://www.unice.fr/sg/authors/abstracts.htm">http://www.unice.fr/sg/authors/abstracts.htm</a></li>
-										<li>How to make them more impactful: <a href="https://www.enago.com/academy/tips-writing-impactful-structured-abstract/">https://www.enago.com/academy/tips-writing-impactful-structured-abstract/</a></li>
-									</ul>
+					<section id="introduction">
+						<h2>Introduction</h2>
+						<blockquote class="pro-tip">My tip: A strong introduction narrows the reader's world step by step until your research question feels inevitable.</blockquote>
+						<p>A good introduction helps the reader understand what is known, what is missing, and why your study is worth reading now. The CARS model is still one of the most useful scaffolds for this.</p>
+						<ul>
+							<li>USC Writing Guide on the CARS model: <a href="https://libguides.usc.edu/writingguide/CARS" target="_blank" rel="noreferrer">https://libguides.usc.edu/writingguide/CARS</a></li>
+							<li>Updated Lund/AWELU introduction structure guide: <a href="https://www.awelu.lu.se/writing/writing-stage/structuring-the-text/structure-of-introductions/" target="_blank" rel="noreferrer">https://www.awelu.lu.se/writing/writing-stage/structuring-the-text/structure-of-introductions/</a></li>
+							<li>Swales-inspired reference PDF: <a href="https://researchwrit.files.wordpress.com/2015/01/article_swales_cars-model.pdf" target="_blank" rel="noreferrer">https://researchwrit.files.wordpress.com/2015/01/article_swales_cars-model.pdf</a></li>
+						</ul>
+						<p class="resource-note">Broken-link audit note: the old Aalto URL is no longer stable, so I replaced it with the current AWELU/Lund guide that covers the same introduction logic.</p>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<hr class="major" />
+					<hr class="major" />
 
-									<h2>Introduction</h2>
+					<section id="related-work">
+						<h2>Related Work</h2>
+						<blockquote class="pro-tip">My tip: Related work is not a dumping ground. It should explain the conversation you are entering and the space your study occupies.</blockquote>
+						<p>The related work section is often underestimated. Do not leave it to the end. Build it while reading, make notes continuously, and decide how each source positions or challenges your work.</p>
+						<ul>
+							<li>Basic advice: <a href="https://guidetogradschoolsurvival.wordpress.com/2011/04/08/how-to-write-related-work/" target="_blank" rel="noreferrer">https://guidetogradschoolsurvival.wordpress.com/2011/04/08/how-to-write-related-work/</a></li>
+							<li>How to structure related work as a funnel: <a href="https://www.linkedin.com/pulse/writing-related-work-section-paperthesis-chamin-morikawa/" target="_blank" rel="noreferrer">https://www.linkedin.com/pulse/writing-related-work-section-paperthesis-chamin-morikawa/</a></li>
+							<li>Example from performance engineering: <a href="https://www.seas.upenn.edu/~cse400/CSE400_2008_2009/related_work.pdf" target="_blank" rel="noreferrer">https://www.seas.upenn.edu/~cse400/CSE400_2008_2009/related_work.pdf</a></li>
+						</ul>
+						<h3>Language and Synthesis</h3>
+						<p>Students often know what papers say but struggle to connect them into a coherent argument. The language of synthesis matters.</p>
+						<ul>
+							<li>Manchester Academic Phrasebank: <a href="https://www.phrasebank.manchester.ac.uk" target="_blank" rel="noreferrer">https://www.phrasebank.manchester.ac.uk</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<p>A good resource for writing introductions is the CARS model, which helps to guide the reader into the research by starting from the existing research.</p>
+					<hr class="major" />
 
-									<ul>
-										<li>A good link from social sciences: <a href="https://libguides.usc.edu/writingguide/CARS">https://libguides.usc.edu/writingguide/CARS</a></li>
-										<li>Another one, a bit more "raw": <a href="http://sana.aalto.fi/awe/style/reporting/sections/intros/cars/cars.html">http://sana.aalto.fi/awe/style/reporting/sections/intros/cars/cars.html</a></li>
-										<li>And yet another one from a book: <a href="https://researchwrit.files.wordpress.com/2015/01/article_swales_cars-model.pdf">https://researchwrit.files.wordpress.com/2015/01/article_swales_cars-model.pdf</a></li>
-									</ul>
+					<section id="research-design">
+						<h2>Research Design</h2>
+						<blockquote class="pro-tip">My tip: Reviewers forgive limits more easily than vagueness. Be explicit about what you did, why you did it, and why the design fits the question.</blockquote>
+						<p>The research design section explains how the study was structured and why the chosen method is appropriate. In software engineering, it helps enormously to align the study with method-specific guidance and community reporting expectations.</p>
+						<ul>
+							<li>Experimentation: <a href="https://link.springer.com/book/10.1007/978-1-4613-1401-6" target="_blank" rel="noreferrer">Experimentation in Software Engineering</a></li>
+							<li>Case studies: <a href="https://www.wiley.com/en-us/Case+Study+Research+in+Software+Engineering%3A+Guidelines+and+Examples-p-9781118104354" target="_blank" rel="noreferrer">Case Study Research in Software Engineering</a></li>
+							<li>Design science research: <a href="https://link.springer.com/book/10.1007/978-3-662-43839-8" target="_blank" rel="noreferrer">Design Science Research in Information Systems</a></li>
+							<li>Action research: <a href="https://link.springer.com/book/10.1007/978-3-030-32609-8" target="_blank" rel="noreferrer">Action Research in Software Engineering</a></li>
+							<li>ACM SIGSOFT Empirical Standards: <a href="https://www2.sigsoft.org/EmpiricalStandards" target="_blank" rel="noreferrer">https://www2.sigsoft.org/EmpiricalStandards</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<hr class="major" />
+					<hr class="major" />
 
-									<h2>Related work</h2>
+					<section id="threats-to-validity">
+						<h2>Threats to Validity</h2>
+						<blockquote class="pro-tip">My tip: Threats to validity are not an apology section. They are where you show intellectual honesty and methodological maturity.</blockquote>
+						<p>For empirical software engineering papers, this is a high-priority area. Good validity discussion explains which risks mattered, how they were handled, and what uncertainty remains.</p>
+						<ul>
+							<li>Feldt &amp; Magazinius classification: <a href="https://www.researchgate.net/publication/221390199_Validity_Threats_in_Empirical_Software_Engineering_Research_-_An_Initial_Survey" target="_blank" rel="noreferrer">Validity Threats in Empirical Software Engineering Research - An Initial Survey</a></li>
+							<li>ACM SIGSOFT empirical standards validity guidance: <a href="https://www2.sigsoft.org/EmpiricalStandards/docs/standards/EmpiricalStandards-V1.1.pdf" target="_blank" rel="noreferrer">Empirical Standards PDF</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<p>The related work section is probably the one that gets the least attention in modern papers, although the situation is slightly changing. Novice writers usually leave this section to the end, which is a "bad" idea. You should write the related work along your research, making notes of everything you read, making relations to what you do.</p>
+					<hr class="major" />
 
-									<ul>
-										<li>Basic advice: <a href="https://guidetogradschoolsurvival.wordpress.com/2011/04/08/how-to-write-related-work/">https://guidetogradschoolsurvival.wordpress.com/2011/04/08/how-to-write-related-work/</a></li>
-										<li>How to structure the related work as a funnel: <a href="https://www.linkedin.com/pulse/writing-related-work-section-paperthesis-chamin-morikawa/">https://www.linkedin.com/pulse/writing-related-work-section-paperthesis-chamin-morikawa/</a></li>
-										<li>An example from performance engineering: <a href="https://www.seas.upenn.edu/~cse400/CSE400_2008_2009/related_work.pdf">https://www.seas.upenn.edu/~cse400/CSE400_2008_2009/related_work.pdf</a></li>
-									</ul>
+					<section id="results">
+						<h2>Results</h2>
+						<blockquote class="pro-tip">My tip: The results section should answer the research questions, not merely replay the analysis pipeline.</blockquote>
+						<p>The results section depends strongly on method, but in all cases it should stay disciplined: present findings clearly, separate interpretation from reporting when possible, and tie results back to your research questions.</p>
+						<ul>
+							<li>San Jose State writing guide: <a href="https://www.sjsu.edu/writingcenter/docs/Results%20Section%20for%20Research%20Papers.pdf" target="_blank" rel="noreferrer">https://www.sjsu.edu/writingcenter/docs/Results%20Section%20for%20Research%20Papers.pdf</a></li>
+							<li>Elsevier advice on results sections: <a href="https://scientific-publishing.webshop.elsevier.com/manuscript-preparation/how-to-write-the-results-section-of-a-research-paper/" target="_blank" rel="noreferrer">https://scientific-publishing.webshop.elsevier.com/manuscript-preparation/how-to-write-the-results-section-of-a-research-paper/</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<hr class="major" />
+					<hr class="major" />
 
-									<h2>Research design</h2>
+					<section id="discussion">
+						<h2>Discussion</h2>
+						<blockquote class="pro-tip">My tip: The discussion should explain why the results matter, not just say that they are interesting.</blockquote>
+						<p>This is where you connect results to prior work, implications, and interpretation. Good discussion is analytical rather than repetitive.</p>
+						<ul>
+							<li>Sacred Heart discussion guide: <a href="https://library.sacredheart.edu/c.php?g=29803&p=185933" target="_blank" rel="noreferrer">https://library.sacredheart.edu/c.php?g=29803&amp;p=185933</a></li>
+							<li>USC discussion guide: <a href="https://libguides.usc.edu/writingguide/discussion" target="_blank" rel="noreferrer">https://libguides.usc.edu/writingguide/discussion</a></li>
+							<li>Hands-on advice from Bioscience Writers: <a href="https://www.biosciencewriters.com/How-to-Write-a-Strong-Discussion-in-Scientific-Manuscripts.aspx" target="_blank" rel="noreferrer">https://www.biosciencewriters.com/How-to-Write-a-Strong-Discussion-in-Scientific-Manuscripts.aspx</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<p>The research design section contains the description of how you designed your research. It is often based on the research methodology that you follow. Here are some examples from the methods used in software engineering:</p>
+					<hr class="major" />
 
-									<ul>
-										<li>Experimentation: <a href="https://www.springer.com/gp/book/9781461370918">https://www.springer.com/gp/book/9781461370918</a></li>
-										<li>Case studies: <a href="https://www.amazon.com/exec/obidos/ASIN/1118104358/acmorg-20">https://www.amazon.com/exec/obidos/ASIN/1118104358/acmorg-20</a></li>
-										<li>Design science research: <a href="https://www.springer.com/gp/book/9783662438381">https://www.springer.com/gp/book/9783662438381</a></li>
-										<li>Action research: <a href="https://www.springer.com/gp/book/9783030326098">https://www.springer.com/gp/book/9783030326098</a></li>
-									</ul>
+					<section id="conclusions">
+						<h2>Conclusions</h2>
+						<blockquote class="pro-tip">My tip: Conclusions should leave the reader with a clean answer to “So what?” and “What now?”</blockquote>
+						<p>Conclusions are often too vague or too repetitive. A good conclusion should state what was learned, why it matters, what remains uncertain, and what should happen next.</p>
+						<ul>
+							<li>Practical step-by-step guide: <a href="https://www.wikihow.com/Write-a-Conclusion-for-a-Research-Paper" target="_blank" rel="noreferrer">https://www.wikihow.com/Write-a-Conclusion-for-a-Research-Paper</a></li>
+							<li>USC conclusion guide: <a href="https://libguides.usc.edu/writingguide/conclusion" target="_blank" rel="noreferrer">https://libguides.usc.edu/writingguide/conclusion</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<hr class="major" />
+					<hr class="major" />
 
-									<h2>Results</h2>
+					<section id="examples">
+						<h2>Examples</h2>
+						<blockquote class="pro-tip">My tip: If your example needs a long apology before the reader understands it, it is not yet a good example.</blockquote>
+						<p>Examples are important throughout scientific texts, but they are often neglected or overcomplicated. Small, precise examples usually teach better than ambitious ones.</p>
+						<ul>
+							<li>Minimal reproducible examples: <a href="https://stackoverflow.com/help/minimal-reproducible-example" target="_blank" rel="noreferrer">https://stackoverflow.com/help/minimal-reproducible-example</a></li>
+							<li>Short, self-contained example concept: <a href="http://www.sscce.org/" target="_blank" rel="noreferrer">http://www.sscce.org/</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<p>The results section is similar to the research design, depending on the research methodology of your choice.</p>
+					<hr class="major" />
 
-									<ul>
-										<li><a href="https://www.sjsu.edu/writingcenter/docs/Results%20Section%20for%20Research%20Papers.pdf">https://www.sjsu.edu/writingcenter/docs/Results%20Section%20for%20Research%20Papers.pdf</a></li>
-										<li><a href="https://scientific-publishing.webshop.elsevier.com/manuscript-preparation/how-to-write-the-results-section-of-a-research-paper/">https://scientific-publishing.webshop.elsevier.com/manuscript-preparation/how-to-write-the-results-section-of-a-research-paper/</a></li>
-									</ul>
+					<section id="templates-tools">
+						<h2>Templates &amp; Tools</h2>
+						<blockquote class="pro-tip">My tip: Good tooling does not write the paper for you, but it removes friction that otherwise steals time from thinking.</blockquote>
+						<p>Use templates and reference tools early. They save formatting effort and reduce last-minute mistakes.</p>
+						<ul>
+							<li>Overleaf IEEE official templates: <a href="https://www.overleaf.com/gallery/tagged/ieee-official" target="_blank" rel="noreferrer">https://www.overleaf.com/gallery/tagged/ieee-official</a></li>
+							<li>Overleaf ACM official templates: <a href="https://www.overleaf.com/gallery/tagged/acm" target="_blank" rel="noreferrer">https://www.overleaf.com/gallery/tagged/acm</a></li>
+							<li>Zotero getting started: <a href="https://www.zotero.org/support/getting_started" target="_blank" rel="noreferrer">https://www.zotero.org/support/getting_started</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<hr class="major" />
+					<hr class="major" />
 
-									<h2>Discussion</h2>
+					<section id="ai-ethics">
+						<h2>AI Ethics &amp; Integrity</h2>
+						<blockquote class="pro-tip">My tip: If you use an LLM, treat it like an unreliable assistant, not like an author and definitely not like a source.</blockquote>
+						<p>Generative AI can help with brainstorming, outlining, and language cleanup, but it can also introduce fabricated claims, broken references, and policy violations. Students should always check venue and publisher policies before submission.</p>
+						<ul>
+							<li>ACM FAQ and policy guidance on generative AI: <a href="https://www.acm.org/publications/policies/frequently-asked-questions" target="_blank" rel="noreferrer">https://www.acm.org/publications/policies/frequently-asked-questions</a></li>
+						</ul>
+						<p>My recommendation: disclose meaningful AI use when required, never invent citations, never let generated text bypass verification, and never assume that fluent text is accurate text.</p>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<p>There are several ways to go about it, but the one that I like the most is this one: <a href="https://library.sacredheart.edu/c.php?g=29803&p=185933">https://library.sacredheart.edu/c.php?g=29803&p=185933</a></p>
+					<hr class="major" />
 
-									<p>I also like this one, which is from the same place as the CARS model: <a href="https://libguides.usc.edu/writingguide/discussion">https://libguides.usc.edu/writingguide/discussion</a></p>
+					<section id="other-resources">
+						<h2>Other Resources</h2>
+						<blockquote class="pro-tip">My tip: Keep a small personal toolkit of resources you actually return to. A useful shortlist beats a huge forgotten bookmark folder.</blockquote>
+						<ul>
+							<li>Lund University resource on academic popular science writing: <a href="https://awelu.srv.lu.se/genres-and-text-types/writing-in-academic-genres/popular-science-writing/" target="_blank" rel="noreferrer">https://awelu.srv.lu.se/genres-and-text-types/writing-in-academic-genres/popular-science-writing/</a></li>
+							<li>Checklist for academic texts: <a href="http://www2.elc.polyu.edu.hk/CILL/essay_checklist.htm" target="_blank" rel="noreferrer">http://www2.elc.polyu.edu.hk/CILL/essay_checklist.htm</a></li>
+							<li>How to rescue a problematic article or chapter: <a href="https://medium.com/advice-and-help-in-authoring-a-phd-or-non-fiction/seven-upgrade-strategies-for-a-problematic-article-or-chapter-3c6b81be9aa2" target="_blank" rel="noreferrer">https://medium.com/advice-and-help-in-authoring-a-phd-or-non-fiction/seven-upgrade-strategies-for-a-problematic-article-or-chapter-3c6b81be9aa2</a></li>
+							<li>Swedish-English dictionary for higher education terms: <a href="https://www.uhr.se/publikationer/svensk-engelsk-ordbok/" target="_blank" rel="noreferrer">https://www.uhr.se/publikationer/svensk-engelsk-ordbok/</a></li>
+							<li>BBC course on academic writing: <a href="https://www.bbc.co.uk/learningenglish/english/course/go-the-distance/unit-1/session-4" target="_blank" rel="noreferrer">https://www.bbc.co.uk/learningenglish/english/course/go-the-distance/unit-1/session-4</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<p>This one is very hands-on: <a href="https://www.biosciencewriters.com/How-to-Write-a-Strong-Discussion-in-Scientific-Manuscripts.aspx">https://www.biosciencewriters.com/How-to-Write-a-Strong-Discussion-in-Scientific-Manuscripts.aspx</a></p>
+					<hr class="major" />
 
-									<hr class="major" />
+					<section id="books">
+						<h2>Books</h2>
+						<blockquote class="pro-tip">My tip: Read writing books with a pen in hand. If you do not translate advice into your own sentences, it stays theoretical.</blockquote>
+						<p>These are some of the books and resources that helped me get better at academic writing.</p>
 
-									<h2>Conclusions</h2>
+						<h3>Stylish Academic Writing by Helen Sword</h3>
+						<p>A comprehensive guide to improving academic writing style without losing rigor.</p>
+						<p><a href="https://www.hup.harvard.edu/books/9780674064485" target="_blank" rel="noreferrer" class="button">Learn More</a></p>
 
-									<p>To write conclusions, I recommend to start with this page: <a href="https://www.wikihow.com/Write-a-Conclusion-for-a-Research-Paper">https://www.wikihow.com/Write-a-Conclusion-for-a-Research-Paper</a> – it shows how to gradually build up your conclusions section.</p>
+						<h3>Don't Be Such a Scientist by Randy Olson</h3>
+						<p>A practical guide to scientific storytelling and audience engagement.</p>
+						<p><a href="https://www.amazon.se/-/en/Randy-Olson/dp/1597265632" target="_blank" rel="noreferrer" class="button">Learn More</a></p>
 
-									<p>Another good resource is the same website as for the CARS model, but for the conclusions section: <a href="https://libguides.usc.edu/writingguide/conclusion">https://libguides.usc.edu/writingguide/conclusion</a></p>
+						<h3>Videos</h3>
+						<ul>
+							<li><a href="https://www.youtube.com/results?search_query=helen+sword+stylish+academic+writing" target="_blank" rel="noreferrer">Helen Sword on stylish academic writing</a></li>
+							<li><a href="https://www.youtube.com/results?search_query=steven+pinker+academic+writing" target="_blank" rel="noreferrer">Steven Pinker on academic writing</a></li>
+						</ul>
+						<a class="back-top" href="#top">Back to Top</a>
+					</section>
 
-									<hr class="major" />
-
-									<h2>Examples</h2>
-
-									<p>Examples are important throughout scientific texts. However, they are often neglected. Surprisingly, it is quite difficult.</p>
-
-									<ul>
-										<li>Code examples: <a href="https://stackoverflow.com/help/minimal-reproducible-example">https://stackoverflow.com/help/minimal-reproducible-example</a></li>
-										<li>Short, self-contained example: <a href="http://www.sscce.org/">http://www.sscce.org/</a></li>
-									</ul>
-
-									<hr class="major" />
-
-									<h2>Other resources</h2>
-
-									<ul>
-										<li>An interesting resource is this website from Lund University about academic <strong>popular science</strong> writing: <a href="https://awelu.srv.lu.se/genres-and-text-types/writing-in-academic-genres/popular-science-writing/">https://awelu.srv.lu.se/genres-and-text-types/writing-in-academic-genres/popular-science-writing/</a></li>
-										<li>A checklist for academic texts, a bit long, but a good idea to go through it before starting to write: <a href="http://www2.elc.polyu.edu.hk/CILL/essay_checklist.htm">http://www2.elc.polyu.edu.hk/CILL/essay_checklist.htm</a></li>
-										<li>Now, very often happens that we already have written a text that need saving – here is a good link that can help you save your article: <a href="https://medium.com/advice-and-help-in-authoring-a-phd-or-non-fiction/seven-upgrade-strategies-for-a-problematic-article-or-chapter-3c6b81be9aa2#.5kzzhaqhw">https://medium.com/advice-and-help-in-authoring-a-phd-or-non-fiction/seven-upgrade-strategies-for-a-problematic-article-or-chapter-3c6b81be9aa2#.5kzzhaqhw</a></li>
-										<li>Here is a link to the official dictionary of terms related to higher education in Sweden, which can come in handy when translating terms: <a href="https://www.uhr.se/publikationer/svensk-engelsk-ordbok/">https://www.uhr.se/publikationer/svensk-engelsk-ordbok/</a></li>
-										<li>A course that you can take from BBC about academic writing. If you have time, then it's perfect to work with: <a href="https://www.bbc.co.uk/learningenglish/english/course/go-the-distance/unit-1/session-4">https://www.bbc.co.uk/learningenglish/english/course/go-the-distance/unit-1/session-4</a></li>
-									</ul>
-
-									<hr class="major" />
-
-									<h2>Books</h2>
-
-									<p>Finally, here are some of the books that helped me to get better in writing.</p>
-
-									<h3>Stylish Academic Writing by Helen Sword</h3>
-									<p>A comprehensive guide to improving your academic writing style and making it more engaging.</p>
-									<p><a href="https://www.hup.harvard.edu/books/9780674064485" class="button">Learn More</a></p>
-
-									<h3>Don't be such a scientist by Randy Olson</h3>
-									<p>A guide to crafting compelling scientific narratives and storytelling techniques for academics.</p>
-									<p><a href="https://www.amazon.se/-/en/Randy-Olson/dp/1597265632" class="button">Learn More</a></p>
-
-									<h3>Videos</h3>
-									<ul>
-										<li><a href="https://www.youtube.com/results?search_query=helen+sword+stylish+academic+writing">Stylish Academic Writing | Helen Sword | Office of Faculty Development & Diversity</a></li>
-										<li><a href="https://www.youtube.com/results?search_query=steven+pinker+academic+writing">Stylish Academic Writing | Steven Pinker | Office of Faculty Development & Diversity</a></li>
-									</ul>
-
-								</section>
-
-						</div>
-					</div>
-
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li>
-											<span class="opener">Pubs</span>
-											<ul>
-												<li><a href="pubs.html">2025-2026 Publications</a></li>
-												<li><a href="hallucinations.html">Hallucinations</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">PhD Courses</span>
-											<ul>
-												<li><a href="generic.html">Action Research in Software Engineering</a></li>
-												<li><a href="phd-course-measurement.html">Software Development Measurement Programs</a></li>
-											</ul>
-										</li>
-
-										<li><a href="writing-advice.html">Writing Advice</a></li>
-									</ul>
-								</nav>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Contact</h2>
-									</header>
-									<p>Professor, Software Engineering Division<br />
-									Chalmers | University of Gothenburg</p>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#">staron@chalmers.se</a></li>
-										<li class="icon solid fa-home">Department of Computer Science and Engineering<br />
-										Chalmers University of Technology<br />
-										SE-412 96 Gothenburg, Sweden</li>
-									</ul>
-								</section>
-
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; Miroslaw Staron. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-								</footer>
-
-						</div>
-					</div>
-
+				</div>
 			</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<div id="sidebar">
+				<div class="inner">
+
+					<section id="search" class="alt">
+						<form method="post" action="#">
+							<input type="text" name="query" id="query" placeholder="Search" />
+						</form>
+					</section>
+
+					<nav id="menu">
+						<header class="major">
+							<h2>Menu</h2>
+						</header>
+						<ul>
+							<li><a href="index.html">Homepage</a></li>
+							<li>
+								<span class="opener">Pubs</span>
+								<ul>
+									<li><a href="pubs.html">2025-2026 Publications</a></li>
+									<li><a href="hallucinations.html">Hallucinations</a></li>
+								</ul>
+							</li>
+							<li>
+								<span class="opener">PhD Courses</span>
+								<ul>
+									<li><a href="generic.html">Action Research in Software Engineering</a></li>
+									<li><a href="phd-course-measurement.html">Software Development Measurement Programs</a></li>
+								</ul>
+							</li>
+							<li><a href="writing-advice.html">Writing Advice</a></li>
+						</ul>
+					</nav>
+
+					<section>
+						<header class="major">
+							<h2>Contact</h2>
+						</header>
+						<p>Professor, Software Engineering Division<br />
+						Chalmers | University of Gothenburg</p>
+						<ul class="contact">
+							<li class="icon solid fa-envelope"><a href="#">staron@chalmers.se</a></li>
+							<li class="icon solid fa-home">Department of Computer Science and Engineering<br />
+							Chalmers University of Technology<br />
+							SE-412 96 Gothenburg, Sweden</li>
+						</ul>
+					</section>
+
+					<footer id="footer">
+						<p class="copyright">&copy; Miroslaw Staron. All rights reserved. Design: <a href="https://html5up.net" target="_blank" rel="noreferrer">HTML5 UP</a>.</p>
+					</footer>
+
+				</div>
+			</div>
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
+
