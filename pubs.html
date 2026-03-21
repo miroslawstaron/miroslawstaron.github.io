@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publications 2025-2026</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css"
+      id="theme"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="home-link" href="https://www.staron.nu/">Back to www.staron.nu</a>
+
+    <div class="reveal">
+      <div class="slides" id="slides">
+        <section class="hero hero-compact">
+          <p class="eyebrow">Publication Deck</p>
+          <h1>Selected Publications from 2025 and 2026</h1>
+          <p class="lead">
+            Each publication is presented as a vertical slide set with title,
+            venue, authors, and quick reference details.
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script>
+      const publications = [
+        {
+          year: "2025",
+          type: "Journal article",
+          title: "ACoRA - A Platform for Automating Code Review Tasks",
+          authors: "Miroslaw Ochodek, Miroslaw Staron",
+          venue: "e-Informatica Software Engineering Journal",
+          note: "Volume 19, Issue 1",
+          link: "https://www.e-informatyka.pl/EISEJ/papers/2025/1/2/",
+          summary:
+            "This paper presents ACoRA, a tool that uses transformer-based models to flag the most review-worthy code fragments and suggest what reviewers should focus on. The evaluation on two open-source projects and one industrial project showed useful partial or exact annotations for a substantial share of review comments."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title: "Guidelines for Conducting Action Research Studies in Software Engineering",
+          authors: "Miroslaw Staron",
+          venue: "e-Informatica Software Engineering Journal",
+          note: "Volume 19, Issue 1",
+          link: "https://doi.org/10.37190/e-Inf250105",
+          summary:
+            "The article synthesizes 22 practical guidelines for running action research in academia-industry collaborations. It focuses on contextual understanding, intervention planning, ethics, and reporting, arguing that embedded collaboration produces both stronger organizational change and stronger research outcomes."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title: "Modeling and Digital Twins: Insights and Strategies for Software Engineers",
+          authors:
+            "Silvia Abrahao, Miroslaw Staron, Judith Michael, Benoit Combemale, Marsha Chechik",
+          venue: "IEEE Software",
+          note: "Volume 42, Issue 2",
+          link: "https://doi.org/10.1109/MS.2024.3510892",
+          summary:
+            "This column surveys research from MODELS 2024 and EDTconf 2024 to show how software modeling and digital twins help engineers understand, communicate about, and manage complex systems. It highlights digital twins as a practical bridge between system design, lifecycle optimization, and operational integration."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title: "Design Pattern Recognition: A Study of Large Language Models",
+          authors:
+            "Sushant Kumar Pandey, Sivajeet Chand, Jennifer Horkoff, Miroslaw Staron, Miroslaw Ochodek, Darko Durisic",
+          venue: "Empirical Software Engineering",
+          note: "Volume 30, Issue 3",
+          link: "https://doi.org/10.1007/s10664-025-10625-1",
+          summary:
+            "The study tests several language models as embedding generators for detecting Gang of Four design patterns in source code. It finds that RoBERTa performs best and shows that LLM-based representations can support design pattern recognition without task-specific pretraining."
+        },
+        {
+          year: "2025",
+          type: "Preprint",
+          title:
+            "Understanding the Changing Landscape of Automotive Software Vulnerabilities: Insights from a Seven-Year Analysis",
+          authors: "Srijita Basu, Miroslaw Staron",
+          venue: "arXiv / SVM 2025",
+          note: "arXiv:2503.17537",
+          link: "https://arxiv.org/abs/2503.17537",
+          summary:
+            "This work analyzes 1,663 reported automotive software vulnerabilities from 2018 to September 2024 to track how weakness patterns have shifted across the ecosystem. It maps evolving CWE trends and affected system areas to support lifecycle-wide vulnerability management."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title: "Exploring Generative AI in Automated Software Engineering",
+          authors: "Miroslaw Staron, Silvia Abrahao",
+          venue: "IEEE Software",
+          note: "Volume 42, Issue 3",
+          link: "https://doi.org/10.1109/MS.2025.3533754",
+          summary:
+            "This practitioners' digest reviews how generative AI is shaping automated software engineering, with ASE 2024 as the main reference point. It frames current progress and practical implications for teams exploring how generation models can support software engineering automation."
+        },
+        {
+          year: "2025",
+          type: "Conference paper",
+          title:
+            "\"Good\" and \"Bad\" Failures in Industrial CI/CD - Balancing Cost and Quality Assurance",
+          authors: "Simin Sun, David Friberg, Miroslaw Staron",
+          venue: "Euromicro Conference on Software Engineering and Advanced Applications",
+          note: "Pages 75-84",
+          link: "https://doi.org/10.1007/978-3-032-04207-1_6",
+          summary:
+            "Based on discussions with four companies, this paper studies how industrial CI/CD teams balance quality assurance with cost and speed. It argues that organizations often blur the line between CI and CD, and that preventing failures earlier in the pre-merge phase offers especially strong returns."
+        },
+        {
+          year: "2025",
+          type: "Conference paper",
+          title: "D-LeDe: A Data Leakage Detection Method for Automotive Perception Systems",
+          authors:
+            "Md Abu Ahammed Babu, Sushant Kumar Pandey, Darko Durisic, Ashok Chaitanya Koppisetty, Miroslaw Staron",
+          venue: "VEHITS",
+          note: "Pages 210-221",
+          link: "https://doi.org/10.5220/0013476700003941",
+          summary:
+            "D-LeDe targets a common but overlooked problem in machine-learning pipelines: image data leakage between train and test sets. Using automotive perception data, the paper shows that image-similarity analysis can identify leakage risks that would otherwise inflate evaluation results."
+        },
+        {
+          year: "2025",
+          type: "Conference paper",
+          title:
+            "Aspects of Complexity in Automotive Software Systems and Their Relation to Maintainability Effort: A Case Study",
+          authors: "Bengt Haraldsson, Miroslaw Staron",
+          venue: "Evaluation and Assessment in Software Engineering",
+          note: "Pages 68-78",
+          link: "https://research.chalmers.se/en/publication/550837",
+          summary:
+            "This case study at Scania examines how developers connect maintainability effort with different forms of complexity in large automotive software systems. It finds that effort is shaped not only by internal technical complexity, but also by organizational coordination and long-term system evolution."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title: "Building Secure Software: The Future of Security, Privacy, and Compliance",
+          authors: "Miroslaw Staron, Silvia Abrahao",
+          venue: "IEEE Software",
+          note: "Volume 42, Issue 4",
+          link: "https://doi.org/10.1109/MS.2025.3557516",
+          summary:
+            "This column highlights security, privacy, and compliance themes from FSE 2024 for practicing software engineers. It argues that modern software teams need stronger integration between software engineering and security engineering as attack surfaces and platform complexity keep expanding."
+        },
+        {
+          year: "2025",
+          type: "Conference paper",
+          title:
+            "An Empirical Study on LLM-Based Log Retrieval for Software Engineering Metadata Management",
+          authors: "Simin Sun, Yuchuan Jin, Miroslaw Staron",
+          venue: "Evaluation and Assessment in Software Engineering",
+          note: "Pages 938-948",
+          link: "https://doi.org/10.1145/3756681.3756989",
+          summary:
+            "The paper proposes an LLM-supported approach for searching autonomous-driving log data using natural language instead of raw SQL. By combining signal logs with video and reliability indicators, it aims to make scenario retrieval easier and more trustworthy for developers."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title: "What Developers Need to Know About AI Trends in Software Engineering",
+          authors: "Silvia Abrahao, Miroslaw Staron",
+          venue: "IEEE Software",
+          note: "Volume 42, Issue 5",
+          link: "https://doi.org/10.1109/MS.2025.3578161",
+          summary:
+            "This practitioners' digest distills practical AI-driven advances highlighted at ICSE 2025. The piece emphasizes how current research is translating AI into developer productivity gains, quality improvements, and new ways to address persistent software engineering problems."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title:
+            "Brain Injury Biomarkers in Humans Undergoing General Anaesthesia and Noncerebral Surgery",
+          authors:
+            "Richard Vithal, Ali El-Merhi, Amar Chandan, Anna Kosovic, Helena Odenstedt Herges, Henrik Zetterberg, Christina Biorserud, Miroslaw Staron, Jaquette Liljencrantz, Linda Block",
+          venue: "Acta Neurologica Scandinavica",
+          note: "Article 7343075",
+          link: "https://doi.org/10.1155/ane/7343075",
+          summary:
+            "This observational clinical study measures several brain injury biomarkers during general anaesthesia and abdominal surgery in patients without cerebral injury. Its goal is to separate the effects of anaesthesia and surgery themselves from biomarker changes that might otherwise be interpreted as neurological injury."
+        },
+        {
+          year: "2025",
+          type: "Conference paper",
+          title:
+            "Variant Management Impact on Architectural Maintainability in Embedded Systems - A Case Study",
+          authors: "Bengt Haraldsson, Miroslaw Staron",
+          venue: "European Conference on Software Architecture",
+          note: "Pages 378-388",
+          link: "https://doi.org/10.1007/978-3-032-02138-0_26",
+          summary:
+            "This study compares variant-management strategies in embedded automotive systems and how they affect architectural maintainability. It finds that software product-line approaches can reduce local complexity, but that complexity often reappears elsewhere as higher coupling or architectural overhead."
+        },
+        {
+          year: "2025",
+          type: "Preprint",
+          title: "An AUTOSAR-Aligned Architectural Study of Vulnerabilities in Automotive SoC Software",
+          authors:
+            "Srijita Basu, Bengt Haraldsson, Miroslaw Staron, Christian Berger, Jennifer Horkoff, Magnus Almgren",
+          venue: "arXiv / QUATIC 2025",
+          note: "arXiv:2510.07941",
+          link: "https://arxiv.org/abs/2510.07941",
+          summary:
+            "The paper studies 180 reported SoC vulnerabilities in automotive systems through an AUTOSAR-aligned architectural lens. It identifies recurring root causes, affected software modules, and patch-delay patterns to support better vulnerability prioritization and localization."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title: "Hybrid Classical-AI Systems for Software Testing and Bug Fixing",
+          authors: "Miroslaw Staron, Silvia Abrahao",
+          venue: "IEEE Software",
+          note: "Volume 42, Issue 6",
+          link: "https://doi.org/10.1109/MS.2025.3597698",
+          summary:
+            "This column reviews emerging work on combining classical software engineering techniques with AI for testing, debugging, and defect resolution. It positions hybrid approaches as a practical way to improve bug detection and fixing rather than relying on AI alone."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title: "Literate Programming with LLMs? - A Study on Rosetta Code and CodeNet",
+          authors: "Simin Sun, Miroslaw Staron",
+          venue: "IEEE Transactions on Software Engineering",
+          note: "2025",
+          link: "https://doi.org/10.1109/TSE.2025.3629828",
+          summary:
+            "This article tests whether modern LLMs can align natural-language explanations with code well enough to support literate programming. Across large Rosetta Code and CodeNet experiments, it finds that trillion-parameter models are much better at capturing both task semantics and programming-language structure."
+        },
+        {
+          year: "2025",
+          type: "Journal article",
+          title:
+            "Intentions, Standards, and Emotions: How Requirements Are Engineered in the Era of Large Language Models",
+          authors: "Miroslaw Staron, Silvia Abrahao",
+          venue: "IEEE Software",
+          note: "Volume 43, Issue 1",
+          link: "https://doi.org/10.1109/MS.2025.3622259",
+          summary:
+            "This short article reflects on how large language models are changing the way requirements are written, analyzed, and discussed. It frames the shift as both a technical and human challenge, bringing standards, stakeholder intent, and emotional interpretation into focus."
+        },
+        {
+          year: "2026",
+          type: "Preprint",
+          title: "Agentic Pipelines in Embedded Software Engineering: Emerging Practices and Challenges",
+          authors: "Simin Sun, Miroslaw Staron",
+          venue: "arXiv",
+          note: "arXiv:2601.10220",
+          link: "https://arxiv.org/abs/2601.10220",
+          summary:
+            "This preprint examines how embedded-software organizations are beginning to use agentic AI pipelines and where the main obstacles remain. The discussion centers on reproducibility, traceability, versioning, regulation, and the challenge of adopting AI safely in long-lived industrial environments."
+        },
+        {
+          year: "2026",
+          type: "Preprint",
+          title: "From LLMs to Agents in Programming: The Impact of Providing an LLM with a Compiler",
+          authors: "Viktor Kjellberg, Miroslaw Staron, Farnaz Fotrousi",
+          venue: "arXiv",
+          note: "arXiv:2601.12146",
+          link: "https://arxiv.org/abs/2601.12146",
+          summary:
+            "The paper studies what changes when a code-generating LLM can iteratively use compiler feedback instead of producing one-shot answers. On hundreds of C programming tasks, compiler access substantially improves compilation success and lets smaller models compete with larger ones."
+        },
+        {
+          year: "2026",
+          type: "Preprint",
+          title: "SE Journals in 2036: Looking Back at the Future We Need to Have",
+          authors:
+            "Tim Menzies, Paris Avgeriou, Robert Feldt, Mauro Pezze, Abhik Roychoudhury, Miroslaw Staron, Sebastian Uchitel, Thomas Zimmermann",
+          venue: "arXiv",
+          note: "arXiv:2601.19217",
+          link: "https://arxiv.org/abs/2601.19217",
+          summary:
+            "This future-looking paper imagines how software engineering journals might reform peer review by 2036. It argues for scalable publishing through ideas like portable reviews, lottery-based review allocation, stronger AI-assisted triage, and publication models that separate deep science from fast-moving practice."
+        },
+        {
+          year: "2026",
+          type: "Book",
+          title: "Engineering Generative AI-Based Software",
+          authors: "Miroslaw Staron",
+          venue: "Book publication",
+          note: "Listed in bibliography as 2026",
+          link: "https://shop.elsevier.com/books/engineering-generative-ai-based-software/staron/978-0-443-27606-4",
+          summary:
+            "The book presents a software-engineering view of generative AI systems, covering requirements, architectures, implementation, deployment, licensing, and data handling. It is positioned as a practical guide for moving from ad hoc prototypes to professionally engineered generative-AI software."
+        }
+      ];
+
+      const slidesRoot = document.getElementById("slides");
+      const years = [...new Set(publications.map((item) => item.year))];
+
+      years.forEach((year) => {
+        const items = publications.filter((item) => item.year === year);
+        const overview = document.createElement("section");
+        overview.className = "year-overview";
+        overview.innerHTML = `
+          <p class="eyebrow">Year ${year}</p>
+          <h2>${items.length} publications</h2>
+          <p class="lead">
+            Move right to browse each publication, then down for details inside
+            every publication set.
+          </p>
+        `;
+        slidesRoot.appendChild(overview);
+
+        items.forEach((item, index) => {
+          const group = document.createElement("section");
+          group.innerHTML = `
+            <section class="publication-slide">
+              <p class="eyebrow">${item.year} | ${item.type}</p>
+              <h2>${item.title}</h2>
+              <p class="meta-line">${item.venue}</p>
+              <p class="meta-line">${item.authors}</p>
+              <p class="publication-count">${index + 1} of ${items.length} in ${year}</p>
+            </section>
+            <section class="detail-slide">
+              <p class="eyebrow">Reference Details</p>
+              <div class="detail-grid">
+                <div class="detail-card">
+                  <span class="detail-label">Title</span>
+                  <p>${item.title}</p>
+                </div>
+                <div class="detail-card">
+                  <span class="detail-label">Authors</span>
+                  <p>${item.authors}</p>
+                </div>
+                <div class="detail-card">
+                  <span class="detail-label">Venue</span>
+                  <p>${item.venue}</p>
+                </div>
+                <div class="detail-card">
+                  <span class="detail-label">Notes</span>
+                  <p>${item.note}</p>
+                </div>
+              </div>
+            </section>
+            <section class="summary-slide">
+              <p class="eyebrow">Link and Summary</p>
+              <p class="summary-copy">${item.summary}</p>
+              <p class="link-line">
+                <a href="${item.link}" target="_blank" rel="noreferrer">Open publication page</a>
+              </p>
+            </section>
+          `;
+          slidesRoot.appendChild(group);
+        });
+      });
+
+      const deck = new Reveal({
+        controls: true,
+        progress: true,
+        hash: true,
+        center: true,
+        transition: "slide",
+        navigationMode: "default"
+      });
+
+      deck.initialize();
+    </script>
+  </body>
+</html>

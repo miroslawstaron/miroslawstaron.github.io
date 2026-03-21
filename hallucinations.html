@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hallucinations Reports</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css"
+      id="theme"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="home-link" href="https://www.staron.nu/">Back to www.staron.nu</a>
+
+    <div class="reveal">
+      <div class="slides" id="slides">
+        <section class="hero hero-compact">
+          <p class="eyebrow">Hallucinations</p>
+          <h1>Unpublished manuscripts and AI-generated content</h1>
+          <p class="lead">
+            This page contains links to unpublished manuscripts and AI-generated
+            content.
+          </p>
+          <p class="lead">
+            Please use this with caution. Although I value these papers and
+            materials, they are not peer-reviewed and may be incorrect.
+          </p>
+          <p class="lead">
+            If you have any questions or comments, please feel free to reach out.
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script>
+      const reports = [
+        {
+          title: "Elicit - Action Research in Software Engineering Studies",
+          file: "hallucinations/action-research-report.pdf",
+          label: "PDF report",
+          summary:
+            "A linked report focused on action research in software engineering studies."
+        },
+        {
+          title: "Elicit - Process-level intelligence - focus on broad review",
+          file: "hallucinations/process-intelligence-report.pdf",
+          label: "PDF report",
+          summary:
+            "A linked report focused on process-level intelligence with a broad review perspective."
+        }
+      ];
+
+      const slidesRoot = document.getElementById("slides");
+
+      reports.forEach((item, index) => {
+        const group = document.createElement("section");
+        group.innerHTML = `
+          <section class="publication-slide">
+            <p class="eyebrow">Report ${index + 1}</p>
+            <h2>${item.title}</h2>
+            <p class="meta-line">${item.label}</p>
+            <p class="publication-count">${index + 1} of ${reports.length}</p>
+          </section>
+          <section class="detail-slide">
+            <p class="eyebrow">Access</p>
+            <div class="detail-grid">
+              <div class="detail-card">
+                <span class="detail-label">Document</span>
+                <p>${item.title}</p>
+              </div>
+              <div class="detail-card">
+                <span class="detail-label">File</span>
+                <p>${item.file}</p>
+              </div>
+            </div>
+          </section>
+          <section class="summary-slide">
+            <p class="eyebrow">Link and Summary</p>
+            <p class="summary-copy">${item.summary}</p>
+            <p class="link-line">
+              <a href="${item.file}" target="_blank" rel="noreferrer">Open PDF report</a>
+            </p>
+          </section>
+        `;
+        slidesRoot.appendChild(group);
+      });
+
+      const deck = new Reveal({
+        controls: true,
+        progress: true,
+        hash: true,
+        center: true,
+        transition: "slide",
+        navigationMode: "default"
+      });
+
+      deck.initialize();
+    </script>
+  </body>
+</html>
