@@ -18,6 +18,14 @@
 		<meta property="og:url" content="https://miroslawstaron.github.io/hallucinations.html" />
 		<meta name="twitter:card" content="summary" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Logo in place of the template's diamond icon on each document card. */
+			.features article .doc-logo { flex: 0 0 8em; width: 8em; margin: 0 2em 0 0; }
+			.features article .doc-logo img { display: block; width: 100%; height: auto; }
+			@media screen and (max-width: 736px) {
+				.features article .doc-logo { flex-basis: auto; width: 6em; margin: 0 0 1.5em 0; }
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -55,10 +63,10 @@
 									</header>
 									<div class="features">
 										<article>
-											<span class="icon solid fa-file-alt"></span>
+											<span class="doc-logo"><img src="images/metriczone.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></span>
 											<div class="content">
 												<h3>Asking the Right Question: An Empirical Evaluation of a Decision Language Model for Detecting Vague Requirements</h3>
-												<p>A manuscript prepared for EASE 2027. It evaluates a 9-billion-parameter decision model on detecting vague weak words in requirements, using QuRE, ARTA and ReqEval. The model separates defects from acceptable uses well, but the wording of the question and the meaning of the benchmark labels matter as much as the model. Drafted with AI assistance.</p>
+												<p>A vibe-coded paper, shared for illustration only. It is not a submission and has not been peer-reviewed. The experiments, the analysis and the text were produced with AI coding tools. The paper evaluates a 9-billion-parameter decision model on detecting vague weak words in requirements, using QuRE, ARTA and ReqEval.</p>
 												<ul class="actions">
 													<li><a href="hallucinations/asking-the-right-question-decision-model-vague-requirements.pdf" class="button" target="_blank" rel="noreferrer">Open PDF</a></li>
 												</ul>
@@ -74,7 +82,7 @@
 									</header>
 									<div class="features">
 										<article>
-											<span class="icon solid fa-balance-scale"></span>
+											<span class="doc-logo"><img src="images/metriczone.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></span>
 											<div class="content">
 												<h3>Achieving Compliance with the EU AI Act</h3>
 												<p>Which methods and tools do organisations use to comply with the EU AI Act? Based on 67 sources, the report finds that no single method is field-validated. The evidence favours combining compliance-by-design, LLM-assisted documentation with human legal review, and clear governance roles.</p>
@@ -84,7 +92,7 @@
 											</div>
 										</article>
 										<article>
-											<span class="icon solid fa-users"></span>
+											<span class="doc-logo"><img src="images/metriczone.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></span>
 											<div class="content">
 												<h3>Action Research in Software Engineering Studies</h3>
 												<p>A report on how action research is used in software engineering studies.</p>
@@ -94,7 +102,7 @@
 											</div>
 										</article>
 										<article>
-											<span class="icon solid fa-project-diagram"></span>
+											<span class="doc-logo"><img src="images/metriczone.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></span>
 											<div class="content">
 												<h3>Process-Level Intelligence: A Broad Review</h3>
 												<p>A broad review of intelligence at the level of software processes.</p>
@@ -104,7 +112,7 @@
 											</div>
 										</article>
 										<article>
-											<span class="icon solid fa-sitemap"></span>
+											<span class="doc-logo"><img src="images/metriczone.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></span>
 											<div class="content">
 												<h3>Architecture- and Design-Level Intelligence</h3>
 												<p>A report on intelligence at the level of software architecture and design.</p>
@@ -114,7 +122,7 @@
 											</div>
 										</article>
 										<article>
-											<span class="icon solid fa-car"></span>
+											<span class="doc-logo"><img src="images/metriczone.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></span>
 											<div class="content">
 												<h3>Software-Defined Vehicles: Architectures and Frameworks</h3>
 												<p>A report on architectures and frameworks for software-defined vehicles.</p>
@@ -133,7 +141,7 @@
 									</header>
 									<div class="features">
 										<article>
-											<span class="icon solid fa-chart-line"></span>
+											<span class="doc-logo"><img src="images/metriczone.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></span>
 											<div class="content">
 												<h3>AI Metrics for Software Engineering</h3>
 												<p>A framework for measuring how software teams use AI tools and how that use affects system health, delivery speed and organisational knowledge.</p>
@@ -159,13 +167,8 @@
 									</header>
 									<ul>
 										<li><a href="index.html">Homepage</a></li>
-										<li>
-											<span class="opener">Pubs</span>
-											<ul>
-												<li><a href="pubs.html">2025-2026 Publications</a></li>
-												<li><a href="hallucinations.html">Hallucinations</a></li>
-											</ul>
-										</li>
+										<li><a href="pubs.html">2025-2026 Publications</a></li>
+										<li><a href="hallucinations.html">Hallucinations</a></li>
 										<li><a href="software.html">Software</a></li>
 										<li>
 											<span class="opener">PhD Courses</span>
