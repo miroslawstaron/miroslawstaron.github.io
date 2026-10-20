@@ -1,135 +1,219 @@
-<!doctype html>
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hallucinations Reports</title>
-    <meta name="description" content="Unpublished manuscripts and AI-generated report links from Miroslaw Staron, shared with a caution that they are not peer-reviewed and may contain errors." />
-    <link rel="canonical" href="https://miroslawstaron.github.io/hallucinations.html" />
-    <meta property="og:title" content="Hallucinations Reports" />
-    <meta property="og:description" content="Unpublished manuscripts and AI-generated report links, shared with caution." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://miroslawstaron.github.io/hallucinations.html" />
-    <meta name="twitter:card" content="summary" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css"
-      id="theme"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <a class="home-link" href="https://miroslawstaron.github.io/">Back to miroslawstaron.github.io</a>
+	<head>
+		<title>Hallucinations</title>
+		<link rel="icon" type="image/jpeg" href="images/prof.jpg" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Unpublished manuscripts and AI-generated reports from Miroslaw Staron, shared with a caution that they are not peer-reviewed and may contain errors." />
+		<link rel="canonical" href="https://miroslawstaron.github.io/hallucinations.html" />
+		<meta property="og:title" content="Hallucinations" />
+		<meta property="og:description" content="Unpublished manuscripts and AI-generated reports, shared with caution." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://miroslawstaron.github.io/hallucinations.html" />
+		<meta name="twitter:card" content="summary" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
 
-    <div class="reveal">
-      <div class="slides" id="slides">
-        <section class="hero hero-compact">
-          <p class="eyebrow">Hallucinations</p>
-          <h1>Unpublished manuscripts and AI-generated content</h1>
-          <p class="lead">
-            This page contains links to unpublished manuscripts and AI-generated
-            content.
-          </p>
-          <p class="lead">
-            Please use this with caution. Although I value these papers and
-            materials, they are not peer-reviewed and may be incorrect.
-          </p>
-          <p class="lead">
-            If you have any questions or comments, please feel free to reach out.
-          </p>
-        </section>
-      </div>
-    </div>
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
-    <script>
-      const reports = [
-        {
-          title: "Elicit - Action Research in Software Engineering Studies",
-          file: "hallucinations/action-research-report.pdf",
-          label: "PDF report",
-          summary:
-            "A linked report focused on action research in software engineering studies."
-        },
-        {
-          title: "Elicit - Process-level intelligence - focus on broad review",
-          file: "hallucinations/process-intelligence-report.pdf",
-          label: "PDF report",
-          summary:
-            "A linked report focused on process-level intelligence with a broad review perspective."
-        },
-        {
-          title: "Elicit - Architecture- and design-level intelligence",
-          file: "hallucinations/architecture-and-design-level-intelligence-report.pdf",
-          label: "PDF report",
-          summary:
-            "A linked report focused on architecture- and design-level intelligence."
-        },
-        {
-          title: "Elicit - Software Defined Vehicles Architectures and Frame",
-          file: "hallucinations/software-defined-vehicles-architectures-and-frame-report.pdf",
-          label: "PDF report",
-          summary:
-            "A linked report focused on software-defined vehicles architectures and frame."
-        },
-        {
-          title: "AI Metrics for Software Engineering",
-          file: "hallucinations/ai-metrics-for-software-engineering.pdf",
-          label: "PDF report",
-          summary:
-            "A linked report focused on metrics for AI in software engineering."
-        }
-      ];
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
 
-      const slidesRoot = document.getElementById("slides");
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Miroslaw Staron</strong></a>
+									<ul class="icons">
+										<li><a href="https://github.com/miroslawstaron" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+										<li><a href="https://www.linkedin.com/in/miroslawstaron/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+										<li><a href="https://scholar.google.com/citations?user=oMZ1ucgAAAAJ" class="icon brands fa-google"><span class="label">Google Scholar</span></a></li>
+									</ul>
+								</header>
 
-      reports.forEach((item, index) => {
-        const group = document.createElement("section");
-        group.innerHTML = `
-          <section class="publication-slide">
-            <p class="eyebrow">Report ${index + 1}</p>
-            <h2>${item.title}</h2>
-            <p class="meta-line">${item.label}</p>
-            <p class="publication-count">${index + 1} of ${reports.length}</p>
-          </section>
-          <section class="detail-slide">
-            <p class="eyebrow">Access</p>
-            <div class="detail-grid">
-              <div class="detail-card">
-                <span class="detail-label">Document</span>
-                <p>${item.title}</p>
-              </div>
-              <div class="detail-card">
-                <span class="detail-label">File</span>
-                <p>${item.file}</p>
-              </div>
-            </div>
-          </section>
-          <section class="summary-slide">
-            <p class="eyebrow">Link and Summary</p>
-            <p class="summary-copy">${item.summary}</p>
-            <p class="link-line">
-              <a href="${item.file}" target="_blank" rel="noreferrer">Open PDF report</a>
-            </p>
-          </section>
-        `;
-        slidesRoot.appendChild(group);
-      });
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Hallucinations</h1>
+									</header>
+									<p>This page collects unpublished manuscripts and AI-generated content: literature reports produced with AI research assistants and papers written with substantial help from AI tools.</p>
+									<blockquote>Please use this material with caution. Although I value these papers and reports, they are not peer-reviewed and may contain errors.</blockquote>
+									<p>If you have any questions or comments, please feel free to reach out.</p>
+								</section>
 
-      const deck = new Reveal({
-        controls: true,
-        progress: true,
-        hash: true,
-        center: true,
-        transition: "slide",
-        navigationMode: "default"
-      });
+							<!-- Unpublished manuscripts -->
+								<section>
+									<header class="major">
+										<h2>Unpublished manuscripts</h2>
+									</header>
+									<div class="features">
+										<article>
+											<span class="icon solid fa-file-alt"></span>
+											<div class="content">
+												<h3>Asking the Right Question: An Empirical Evaluation of a Decision Language Model for Detecting Vague Requirements</h3>
+												<p>A manuscript prepared for EASE 2027. It evaluates a 9-billion-parameter decision model on detecting vague weak words in requirements, using QuRE, ARTA and ReqEval. The model separates defects from acceptable uses well, but the wording of the question and the meaning of the benchmark labels matter as much as the model. Drafted with AI assistance.</p>
+												<ul class="actions">
+													<li><a href="hallucinations/asking-the-right-question-decision-model-vague-requirements.pdf" class="button" target="_blank" rel="noreferrer">Open PDF</a></li>
+												</ul>
+											</div>
+										</article>
+									</div>
+								</section>
 
-      deck.initialize();
-    </script>
-  </body>
+							<!-- Elicit reports -->
+								<section>
+									<header class="major">
+										<h2>AI-generated literature reports (Elicit)</h2>
+									</header>
+									<div class="features">
+										<article>
+											<span class="icon solid fa-balance-scale"></span>
+											<div class="content">
+												<h3>Achieving Compliance with the EU AI Act</h3>
+												<p>Which methods and tools do organisations use to comply with the EU AI Act? Based on 67 sources, the report finds that no single method is field-validated. The evidence favours combining compliance-by-design, LLM-assisted documentation with human legal review, and clear governance roles.</p>
+												<ul class="actions">
+													<li><a href="hallucinations/eu-ai-act-compliance-report.pdf" class="button" target="_blank" rel="noreferrer">Open PDF</a></li>
+												</ul>
+											</div>
+										</article>
+										<article>
+											<span class="icon solid fa-users"></span>
+											<div class="content">
+												<h3>Action Research in Software Engineering Studies</h3>
+												<p>A report on how action research is used in software engineering studies.</p>
+												<ul class="actions">
+													<li><a href="hallucinations/action-research-report.pdf" class="button" target="_blank" rel="noreferrer">Open PDF</a></li>
+												</ul>
+											</div>
+										</article>
+										<article>
+											<span class="icon solid fa-project-diagram"></span>
+											<div class="content">
+												<h3>Process-Level Intelligence: A Broad Review</h3>
+												<p>A broad review of intelligence at the level of software processes.</p>
+												<ul class="actions">
+													<li><a href="hallucinations/process-intelligence-report.pdf" class="button" target="_blank" rel="noreferrer">Open PDF</a></li>
+												</ul>
+											</div>
+										</article>
+										<article>
+											<span class="icon solid fa-sitemap"></span>
+											<div class="content">
+												<h3>Architecture- and Design-Level Intelligence</h3>
+												<p>A report on intelligence at the level of software architecture and design.</p>
+												<ul class="actions">
+													<li><a href="hallucinations/architecture-and-design-level-intelligence-report.pdf" class="button" target="_blank" rel="noreferrer">Open PDF</a></li>
+												</ul>
+											</div>
+										</article>
+										<article>
+											<span class="icon solid fa-car"></span>
+											<div class="content">
+												<h3>Software-Defined Vehicles: Architectures and Frameworks</h3>
+												<p>A report on architectures and frameworks for software-defined vehicles.</p>
+												<ul class="actions">
+													<li><a href="hallucinations/software-defined-vehicles-architectures-and-frame-report.pdf" class="button" target="_blank" rel="noreferrer">Open PDF</a></li>
+												</ul>
+											</div>
+										</article>
+									</div>
+								</section>
+
+							<!-- Other AI-generated reports -->
+								<section>
+									<header class="major">
+										<h2>Other AI-generated reports</h2>
+									</header>
+									<div class="features">
+										<article>
+											<span class="icon solid fa-chart-line"></span>
+											<div class="content">
+												<h3>AI Metrics for Software Engineering</h3>
+												<p>A framework for measuring how software teams use AI tools and how that use affects system health, delivery speed and organisational knowledge.</p>
+												<ul class="actions">
+													<li><a href="hallucinations/ai-metrics-for-software-engineering.pdf" class="button" target="_blank" rel="noreferrer">Open PDF</a></li>
+												</ul>
+											</div>
+										</article>
+									</div>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li>
+											<span class="opener">Pubs</span>
+											<ul>
+												<li><a href="pubs.html">2025-2026 Publications</a></li>
+												<li><a href="hallucinations.html">Hallucinations</a></li>
+											</ul>
+										</li>
+										<li><a href="software.html">Software</a></li>
+										<li>
+											<span class="opener">PhD Courses</span>
+											<ul>
+												<li><a href="generic.html">Action Research in Software Engineering</a></li>
+												<li><a href="phd-course-measurement.html">Software Development Measurement Programs</a></li>
+											</ul>
+										</li>
+										<li><a href="writing-advice.html">Writing Advice</a></li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>Office address:</p>
+									<p>Hörselgången 5</p>
+									<p>412 96 Gothenburg, Sweden</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="mailto:miroslaw.staron@gu.se">miroslaw.staron@gu.se</a></li>
+										<li class="icon solid fa-phone">+46 31 772 1081</li>
+									</ul>
+									<ul class="actions">
+										<li><a href="https://www.gu.se/en/about/find-staff/miroslawstaron" class="button">University of Gothenburg</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="https://www.chalmers.se/en/persons/miroslaw/" class="button">Chalmers</a></li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Miroslaw Staron. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>

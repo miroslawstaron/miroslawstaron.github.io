@@ -12,7 +12,7 @@ The site currently includes:
 - Course pages for PhD-level material.
 - A writing advice page for students.
 - A standalone Reveal.js publications page.
-- A standalone Reveal.js hallucinations/reports page.
+- A hallucinations page linking to unpublished manuscripts and AI-generated reports.
 
 Everything is static HTML, CSS, JavaScript, images, and PDFs. There is no build step required for normal edits.
 
@@ -37,17 +37,17 @@ Everything is static HTML, CSS, JavaScript, images, and PDFs. There is no build 
   - Uses `styles.css` for local styling.
 
 - `hallucinations.html`
-  - Standalone Reveal.js slide deck linking to unpublished reports and AI-generated material.
-  - Uses `styles.css` for local styling.
+  - Standard site page (sidebar layout) linking to unpublished manuscripts and AI-generated reports.
+  - Each document is an `<article>` in an Editorial `features` grid with an icon, a short summary and an "Open PDF" button.
 
 ## Supporting Files
 
 - `styles.css`
-  - Shared stylesheet for the standalone Reveal.js pages (`pubs.html` and `hallucinations.html`).
+  - Stylesheet for the standalone Reveal.js page (`pubs.html`).
   - If the layout of those pages looks wrong, this is the first file to check.
 
 - `hallucinations/`
-  - Stores PDF files linked from `hallucinations.html`.
+  - Stores PDF files linked from `hallucinations.html`. To add a document, copy the PDF here and add an `<article>` to the matching section of `hallucinations.html`.
 
 - `images/`
   - Site images used by the homepage and other standard pages.
@@ -66,7 +66,7 @@ Everything is static HTML, CSS, JavaScript, images, and PDFs. There is no build 
 There are effectively two page types:
 
 1. Standard site pages
-   - Examples: `index.html`, `generic.html`, `phd-course-measurement.html`, `writing-advice.html`
+   - Examples: `index.html`, `generic.html`, `phd-course-measurement.html`, `writing-advice.html`, `software.html`, `hallucinations.html`
    - These use the HTML5 UP structure with:
      - `#wrapper`
      - `#main`
@@ -74,7 +74,7 @@ There are effectively two page types:
      - shared sidebar navigation
 
 2. Standalone Reveal.js pages
-   - Examples: `pubs.html`, `hallucinations.html`
+   - Example: `pubs.html`
    - These are separate full-page slide experiences.
    - They do not use the normal sidebar layout.
    - They include Reveal.js from CDN and use `styles.css`.
@@ -93,7 +93,7 @@ For pages like `index.html` or `writing-advice.html`:
 
 ### Reveal.js pages
 
-For pages like `pubs.html` and `hallucinations.html`:
+For pages like `pubs.html`:
 
 - Edit the HTML page directly.
 - Update content in the JavaScript data arrays if the slides are generated programmatically.
@@ -116,7 +116,7 @@ Use this when adding a normal content page with the site sidebar.
 
 Use this when adding another slide-based standalone page similar to `pubs.html`.
 
-1. Copy `pubs.html` or `hallucinations.html`.
+1. Copy `pubs.html`.
 2. Rename it, for example `new-slides.html`.
 3. Update:
    - page `<title>`
@@ -146,6 +146,8 @@ When adding or renaming a menu item, update at least:
 - `generic.html`
 - `phd-course-measurement.html`
 - `writing-advice.html`
+- `software.html`
+- `hallucinations.html`
 
 If you forget one page, the site will feel inconsistent.
 
