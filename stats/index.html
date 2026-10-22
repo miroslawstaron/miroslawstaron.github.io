@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changes per day — GitHub stats</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #e9e7dd;
+    --surface: #fcfcfb;
+    --ink: #0b0b0b;
+    --ink-2: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --axis: #8f8d86;
+    --border: rgba(11, 11, 11, 0.10);
+    --wash: rgba(11, 11, 11, 0.05);
+    --line: #2b2b2a;
+    --s-commits: #2a78d6;
+    --s-prs: #eb6834;
+    --s-issues: #1baf7a;
+    --s-reviews: #eda100;
+    --s-other: #a3a19a;
+    --up: #006300;
+    --down: #b42f2f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7;
+      --grid: #2c2c2a; --axis: #6b6a64; --border: rgba(255,255,255,0.10); --wash: rgba(255,255,255,0.06);
+      --line: #f0efec; --s-commits: #3987e5; --s-prs: #d95926; --s-issues: #199e70;
+      --s-reviews: #c98500; --s-other: #6b6a64; --up: #0ca30c; --down: #e66767;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7;
+    --grid: #2c2c2a; --axis: #6b6a64; --border: rgba(255,255,255,0.10); --wash: rgba(255,255,255,0.06);
+    --line: #f0efec; --s-commits: #3987e5; --s-prs: #d95926; --s-issues: #199e70;
+    --s-reviews: #c98500; --s-other: #6b6a64; --up: #0ca30c; --down: #e66767;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 1240px; margin: 0 auto; padding: 40px 28px 56px; }
+  header.hero { text-align: center; margin-bottom: 28px; position: relative; }
+  header.hero .home { position: absolute; left: 0; top: -24px; color: var(--ink-2); font-size: 14px; text-decoration: none; }
+  header.hero .home:hover { text-decoration: underline; }
+  header.hero h1 { font-size: clamp(32px, 5vw, 56px); line-height: 1.05; margin: 0; letter-spacing: -0.02em; font-weight: 700; }
+  header.hero p { margin: 8px 0 0; font-size: clamp(16px, 2vw, 22px); color: var(--ink-2); }
+  .who { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; color: var(--ink-2); font-size: 14px; }
+  .who img { width: 28px; height: 28px; border-radius: 50%; }
+  .who a { color: inherit; }
+
+  .card { background: var(--surface); border-radius: 22px; border: 1px solid var(--border); padding: 24px 28px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 10px; padding: 3px; gap: 2px; }
+  .seg button {
+    border: 0; background: transparent; color: var(--ink-2); font: inherit; font-size: 13px;
+    padding: 5px 12px; border-radius: 7px; cursor: pointer;
+  }
+  .seg button:hover { background: var(--wash); }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); font-weight: 600; }
+  .ghost { border: 1px solid var(--border); background: transparent; color: var(--ink-2); font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 10px; cursor: pointer; }
+  .ghost:hover { background: var(--wash); }
+
+  .chart-wrap { position: relative; }
+  svg { display: block; width: 100%; overflow: visible; }
+  svg text { fill: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  svg .tick-y { text-anchor: end; }
+  svg .grid { stroke: var(--grid); stroke-width: 1; }
+  svg .axis { stroke: var(--axis); stroke-width: 1.5; }
+  svg .avg { fill: none; stroke: var(--line); stroke-width: 2; stroke-linejoin: round; }
+  svg .callout rect { fill: var(--surface); stroke: var(--axis); stroke-width: 1.5; }
+  svg .callout .big { fill: var(--ink); font-size: 22px; font-weight: 700; }
+  svg .callout .small { fill: var(--ink-2); font-size: 13px; }
+  svg .note { fill: var(--ink-2); font-size: 14px; font-weight: 600; }
+  svg .note-line { stroke: var(--ink-2); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  svg .hover-band { fill: var(--wash); }
+
+  .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 26px; margin-top: 14px; color: var(--ink-2); font-size: 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+  .legend i.line { height: 3px; width: 22px; border-radius: 2px; background: var(--line); }
+
+  .tooltip {
+    position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12); border-radius: 12px; padding: 10px 12px; font-size: 13px;
+    min-width: 180px; opacity: 0; transition: opacity 80ms; z-index: 3;
+  }
+  .tooltip .t-date { font-weight: 600; margin-bottom: 6px; }
+  .tooltip .row { display: flex; align-items: center; gap: 8px; color: var(--ink-2); }
+  .tooltip .row b { margin-left: auto; color: var(--ink); font-variant-numeric: tabular-nums; font-weight: 600; }
+  .tooltip .row i { width: 10px; height: 10px; border-radius: 3px; }
+  .tooltip .sep { border-top: 1px solid var(--border); margin: 6px 0; }
+
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 18px 0; }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px; }
+  .kpi .label { color: var(--ink-2); font-size: 13px; }
+  .kpi .value { font-size: 30px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; margin-top: 4px; }
+  .kpi .sub { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .kpi .sub .up { color: var(--up); font-weight: 600; }
+  .kpi .sub .down { color: var(--down); font-weight: 600; }
+
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+  .panel h2 { font-size: 16px; margin: 0 0 2px; }
+  .panel .hint { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .hbar { display: grid; grid-template-columns: minmax(0, 1fr) 2fr auto; align-items: center; gap: 10px; margin: 7px 0; font-size: 13px; }
+  .hbar .name { color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hbar .track { height: 12px; }
+  .hbar .fill { height: 100%; border-radius: 0 4px 4px 0; background: var(--s-commits); min-width: 2px; }
+  .hbar .num { font-variant-numeric: tabular-nums; color: var(--ink); min-width: 2.5em; text-align: right; }
+  .empty { color: var(--muted); font-size: 13px; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 6px 10px; border-bottom: 1px solid var(--grid); }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--ink-2); font-weight: 600; }
+  details { margin-top: 14px; }
+  summary { cursor: pointer; color: var(--ink-2); font-size: 14px; }
+  footer { margin-top: 24px; color: var(--muted); font-size: 13px; text-align: center; }
+  code { background: var(--wash); padding: 1px 5px; border-radius: 5px; }
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <a class="home" href="https://www.staron.nu/">← www.staron.nu</a>
+    <h1 id="title">Changes per day</h1>
+    <p id="subtitle"></p>
+    <div class="who" id="who"></div>
+  </header>
+
+  <section class="card">
+    <div class="controls">
+      <div class="seg" id="range" role="group" aria-label="Time range">
+        <button data-v="90">3M</button><button data-v="182">6M</button><button data-v="365" aria-pressed="true">1Y</button><button data-v="all">All</button>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="seg" id="gran" role="group" aria-label="Granularity">
+          <button data-v="day" aria-pressed="true">Daily</button><button data-v="week">Weekly</button><button data-v="month">Monthly</button>
+        </div>
+        <button class="ghost" id="theme" title="Toggle light/dark">◐</button>
+      </div>
+    </div>
+    <div class="chart-wrap" id="chartWrap">
+      <svg id="chart" role="img" aria-label="Stacked bar chart of contributions per period"></svg>
+      <div class="tooltip" id="tip"></div>
+    </div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="grid3">
+    <div class="card panel"><h2>Top repositories</h2><p class="hint">Commits in the selected range</p><div id="repos"></div></div>
+    <div class="card panel"><h2>Languages</h2><p class="hint">Commits by repository primary language</p><div id="langs"></div></div>
+    <div class="card panel"><h2>Weekly rhythm</h2><p class="hint">Average contributions per weekday</p><div id="weekday"></div></div>
+  </section>
+
+  <section class="card" style="margin-top:14px">
+    <details>
+      <summary>Monthly breakdown (table view)</summary>
+      <div id="table" style="margin-top:12px;overflow-x:auto"></div>
+    </details>
+  </section>
+
+  <footer id="footer"></footer>
+</main>
+
+<script src="data.js"></script>
+<script>
+(() => {
+  const S = window.STATS;
+  if (!S) {
+    document.querySelector('main').innerHTML =
+      '<p style="text-align:center">No data yet — run <code>python fetch_stats.py</code> first.</p>';
+    return;
+  }
+
+  // Stack order bottom → top; color follows the series, never its rank.
+  const SERIES = [
+    { key: 'commits', label: 'Commits', color: 'var(--s-commits)' },
+    { key: 'prs', label: 'Pull requests', color: 'var(--s-prs)' },
+    { key: 'issues', label: 'Issues', color: 'var(--s-issues)' },
+    { key: 'reviews', label: 'Reviews', color: 'var(--s-reviews)' },
+    { key: 'other', label: 'Private & other', color: 'var(--s-other)' },
+  ];
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const WEEKDAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const fmt = n => n.toLocaleString('en-US');
+  const fmt1 = n => n.toLocaleString('en-US', { maximumFractionDigits: 1 });
+  const parse = s => new Date(s + 'T00:00:00');
+  const fmtDate = d => `${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  const fmtShort = d => `${MONTHS[d.getMonth()]} ${d.getDate()}`;
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const el = (id) => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+
+  const state = { range: '365', gran: 'day' };
+  const GRAN = {
+    day: { avgK: 7, avgLabel: '7-day', title: b => fmtDate(b.start), when: b => `on ${fmtShort(b.start)}` },
+    week: { avgK: 4, avgLabel: '4-week', title: b => `Week of ${fmtDate(b.start)}`, when: b => `week of ${fmtShort(b.start)}` },
+    month: { avgK: 3, avgLabel: '3-month', title: b => `${MONTHS[b.start.getMonth()]} ${b.start.getFullYear()}`,
+             when: b => `in ${MONTHS[b.start.getMonth()]} ${b.start.getFullYear()}` },
+  };
+  const allDays = S.days.map(d => ({ ...d, d: parse(d.date) }));
+
+  // ---------- header ----------
+  const p = S.profile;
+  el('who').innerHTML = `<img src="${esc(p.avatarUrl)}" alt=""><a href="${esc(p.url)}" target="_blank" rel="noopener">@${esc(p.login)}</a>
+    · ${fmt(p.repoCount)} repos · ${fmt(p.stars)} stars · ${fmt(p.followers)} followers · on GitHub since ${parse(p.createdAt.slice(0,10)).getFullYear()}`;
+  el('footer').innerHTML = `Data from the GitHub GraphQL API, generated ${new Date(S.generatedAt).toLocaleString()}.
+    Refresh with <code>python fetch_stats.py</code> (use <code>--since YYYY-MM-DD</code> for a longer history).
+    “Private &amp; other” = calendar contributions not attributable to a public type (private repos, repo creation).`;
+
+  // ---------- data shaping ----------
+  function visibleDays() {
+    if (state.range === 'all') return allDays;
+    return allDays.slice(-Number(state.range));
+  }
+
+  function bucket(days) {
+    if (state.gran === 'day') return days.map(d => ({ ...d, start: d.d, end: d.d, n: 1 }));
+    const out = [];
+    let cur = null;
+    for (const d of days) {
+      let start;
+      if (state.gran === 'month') start = new Date(d.d.getFullYear(), d.d.getMonth(), 1);
+      else { start = new Date(d.d); start.setDate(d.d.getDate() - (d.d.getDay() + 6) % 7); }
+      if (!cur || cur.start.getTime() !== start.getTime()) {
+        cur = { start, end: d.d, n: 0, total: 0, prsMerged: 0 };
+        SERIES.forEach(s => cur[s.key] = 0);
+        out.push(cur);
+      }
+      cur.end = d.d; cur.n++; cur.total += d.total; cur.prsMerged += d.prsMerged;
+      SERIES.forEach(s => cur[s.key] += d[s.key]);
+    }
+    return out;
+  }
+
+  function trailingAvg(buckets, k) {
+    return buckets.map((_, i) => {
+      const lo = Math.max(0, i - k + 1);
+      let sum = 0;
+      for (let j = lo; j <= i; j++) sum += buckets[j].total;
+      return sum / (i - lo + 1);
+    });
+  }
+
+  function niceMax(v) {
+    if (v <= 0) return { max: 4, step: 1 };
+    const raw = v / 5;
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw);
+    const s = Math.max(step, raw < 1 ? 1 : step);
+    return { max: Math.ceil(v / s) * s, step: s };
+  }
+
+  // Longest stretch of zero-activity days that sits between active days.
+  function quietStretch(days) {
+    let best = null, runStart = -1;
+    const firstActive = days.findIndex(d => d.total > 0);
+    for (let i = Math.max(firstActive, 0); i <= days.length; i++) {
+      const zero = i < days.length && days[i].total === 0;
+      if (zero && runStart < 0) runStart = i;
+      if (!zero && runStart >= 0) {
+        const len = i - runStart;
+        if (i < days.length && len >= 7 && (!best || len > best.len)) best = { from: runStart, to: i - 1, len };
+        runStart = -1;
+      }
+    }
+    return best && { start: days[best.from].d, end: days[best.to].d, len: best.len };
+  }
+
+  // ---------- chart ----------
+  const svg = el('chart'), tip = el('tip'), wrap = el('chartWrap');
+  let hit = null;
+
+  function renderChart(days) {
+    const buckets = bucket(days);
+    const avgK = GRAN[state.gran].avgK;
+    const avg = trailingAvg(buckets, avgK);
+    const W = wrap.clientWidth, H = Math.max(320, Math.min(520, W * 0.42));
+    const m = { top: 36, right: 20, bottom: 40, left: 54 };
+    const iw = W - m.left - m.right, ih = H - m.top - m.bottom;
+    const peakVal = Math.max(...buckets.map(b => b.total), 0);
+    const { max, step } = niceMax(peakVal * 1.12);
+    const n = buckets.length;
+    const slot = iw / n;
+    const bw = Math.max(1, slot * (state.gran === 'day' ? 0.72 : 0.8));
+    const x = i => m.left + i * slot + (slot - bw) / 2;
+    const xc = i => m.left + (i + 0.5) * slot;
+    const y = v => m.top + ih - (v / max) * ih;
+    const radius = bw >= 6 ? 4 : bw >= 3 ? 1.5 : 0;
+    const gap = bw >= 4 ? 2 : 0;
+
+    let out = '';
+    for (let v = 0; v <= max + 1e-9; v += step) {
+      out += `<line class="grid" x1="${m.left}" x2="${W - m.right}" y1="${y(v)}" y2="${y(v)}"/>`;
+      out += `<text class="tick-y" x="${m.left - 10}" y="${y(v) + 4}">${fmt(Math.round(v * 10) / 10)}</text>`;
+    }
+
+    // Bars: stacked, surface gap between segments, rounded data-end on the top segment only.
+    buckets.forEach((b, i) => {
+      if (!b.total) return;
+      let acc = 0;
+      const segs = SERIES.filter(s => b[s.key] > 0);
+      segs.forEach((s, si) => {
+        const y0 = y(acc), y1 = y(acc + b[s.key]);
+        acc += b[s.key];
+        const top = si === segs.length - 1;
+        const h = Math.max(0.5, y0 - y1 - (top ? 0 : gap));
+        const yy = top ? y1 : y1 + gap;
+        if (top && radius && h > radius) {
+          const r = radius, X = x(i), Y = yy;
+          out += `<path style="fill:${s.color}" d="M${X},${Y + h}V${Y + r}Q${X},${Y} ${X + r},${Y}H${X + bw - r}Q${X + bw},${Y} ${X + bw},${Y + r}V${Y + h}Z"/>`;
+        } else {
+          out += `<rect style="fill:${s.color}" x="${x(i)}" y="${yy}" width="${bw}" height="${h}"/>`;
+        }
+      });
+    });
+
+    // Axis + month ticks.
+    out += `<line class="axis" x1="${m.left}" x2="${W - m.right}" y1="${y(0)}" y2="${y(0)}"/>`;
+    out += `<line class="axis" x1="${m.left}" x2="${m.left}" y1="${m.top - 8}" y2="${y(0)}"/>`;
+    const firstDate = buckets[0].start, lastDate = buckets[n - 1].end;
+    const spanDays = (lastDate - firstDate) / 864e5 + 1;
+    const monthStep = spanDays > 2000 ? 12 : spanDays > 900 ? 6 : spanDays > 420 ? 2 : 1;
+    let lastLabelX = -Infinity;
+    let firstTick = true;
+    for (let d = new Date(firstDate.getFullYear(), firstDate.getMonth() + 1, 1); d <= lastDate; d.setMonth(d.getMonth() + 1)) {
+      if (d.getMonth() % monthStep) continue;
+      const px = m.left + ((d - firstDate) / 864e5 / spanDays) * iw;
+      if (px - lastLabelX < 44) continue;
+      lastLabelX = px;
+      const label = d.getMonth() === 0 || firstTick ? `${MONTHS[d.getMonth()]} ’${String(d.getFullYear()).slice(2)}` : MONTHS[d.getMonth()];
+      out += `<line class="axis" x1="${px}" x2="${px}" y1="${y(0)}" y2="${y(0) + 6}"/>`;
+      out += `<text x="${px}" y="${y(0) + 24}" text-anchor="middle">${label}</text>`;
+      firstTick = false;
+    }
+
+    // Quiet stretch annotation (daily view only, like the "Quiet week" marker).
+    if (state.gran === 'day') {
+      const q = quietStretch(days);
+      if (q) {
+        const mid = new Date((q.start.getTime() + q.end.getTime()) / 2);
+        const px = m.left + ((mid - firstDate) / 864e5 / spanDays) * iw + slot / 2;
+        const label = q.len >= 14 ? `Quiet ${Math.round(q.len / 7)} weeks` : 'Quiet week';
+        out += `<line class="note-line" x1="${px}" x2="${px}" y1="${y(max * 0.22)}" y2="${y(0) - 4}"/>`;
+        out += `<text class="note" x="${px}" y="${y(max * 0.22) - 10}" text-anchor="middle">${label}</text>`;
+      }
+    }
+
+    // 7-day / 4-week average line.
+    out += `<path class="avg" d="${avg.map((v, i) => `${i ? 'L' : 'M'}${xc(i).toFixed(1)},${y(v).toFixed(1)}`).join('')}"/>`;
+
+    // Peak callout.
+    const peakI = buckets.findIndex(b => b.total === peakVal);
+    if (peakVal > 0) {
+      const b = buckets[peakI];
+      const when = GRAN[state.gran].when(b);
+      const big = fmt(peakVal);
+      const small = `changes ${when}`;
+      const bwBox = Math.max(big.length * 14, small.length * 7.2) + 28, bh = 58;
+      const px = xc(peakI);
+      const left = px + 14 + bwBox > W - m.right;
+      const bx = left ? px - 14 - bwBox : px + 14;
+      const by = Math.max(4, y(peakVal) - 8);
+      out += `<g class="callout"><rect x="${bx}" y="${by}" width="${bwBox}" height="${bh}" rx="10"/>
+        <text class="big" x="${bx + bwBox - 14}" y="${by + 27}" text-anchor="end">${big}</text>
+        <text class="small" x="${bx + bwBox - 14}" y="${by + 46}" text-anchor="end">${small}</text></g>`;
+    }
+
+    out += `<rect id="hoverBand" class="hover-band" x="0" y="${m.top}" width="0" height="${ih}" style="display:none"/>`;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('height', H);
+    svg.innerHTML = out;
+    hit = { buckets, avg, m, slot, iw, ih, W, avgK };
+
+    el('legend').innerHTML = SERIES.map(s => `<span><i style="background:${s.color}"></i>${s.label}</span>`).join('') +
+      `<span><i class="line"></i>${GRAN[state.gran].avgLabel} average</span>`;
+  }
+
+  // Hover layer: hit target is the whole column slot, wider than the mark.
+  svg.addEventListener('mousemove', e => {
+    if (!hit) return;
+    const r = svg.getBoundingClientRect();
+    const sx = (e.clientX - r.left) * (hit.W / r.width);
+    const i = Math.floor((sx - hit.m.left) / hit.slot);
+    const band = document.getElementById('hoverBand');
+    if (i < 0 || i >= hit.buckets.length) { tip.style.opacity = 0; band.style.display = 'none'; return; }
+    const b = hit.buckets[i];
+    band.style.display = '';
+    band.setAttribute('x', hit.m.left + i * hit.slot);
+    band.setAttribute('width', hit.slot);
+    const title = GRAN[state.gran].title(b);
+    const rows = SERIES.filter(s => b[s.key] > 0)
+      .map(s => `<div class="row"><i style="background:${s.color}"></i>${s.label}<b>${fmt(b[s.key])}</b></div>`).join('');
+    tip.innerHTML = `<div class="t-date">${title}</div>${rows || '<div class="row">No activity</div>'}
+      <div class="sep"></div><div class="row">Total<b>${fmt(b.total)}</b></div>
+      <div class="row">${GRAN[state.gran].avgLabel} avg<b>${fmt1(hit.avg[i])}</b></div>
+      ${b.prsMerged ? `<div class="row">PRs merged<b>${fmt(b.prsMerged)}</b></div>` : ''}`;
+    const wr = wrap.getBoundingClientRect();
+    let tx = e.clientX - wr.left + 16;
+    if (tx + 200 > wr.width) tx = e.clientX - wr.left - 216;
+    tip.style.left = tx + 'px';
+    tip.style.top = Math.max(0, e.clientY - wr.top - 40) + 'px';
+    tip.style.opacity = 1;
+  });
+  svg.addEventListener('mouseleave', () => {
+    tip.style.opacity = 0;
+    const band = document.getElementById('hoverBand');
+    if (band) band.style.display = 'none';
+  });
+
+  // ---------- KPIs ----------
+  function sumOf(days, key) { return days.reduce((a, d) => a + d[key], 0); }
+
+  function renderKpis(days) {
+    const total = sumOf(days, 'total');
+    const active = days.filter(d => d.total > 0).length;
+    let longest = 0, run = 0;
+    days.forEach(d => { run = d.total > 0 ? run + 1 : 0; longest = Math.max(longest, run); });
+    let current = 0;
+    for (let i = allDays.length - 1; i >= 0 && allDays[i].total > 0; i--) current++;
+    const busiest = days.reduce((a, d) => d.total > a.total ? d : a, days[0]);
+    const last30 = sumOf(allDays.slice(-30), 'total'), prev30 = sumOf(allDays.slice(-60, -30), 'total');
+    const delta = prev30 ? (last30 - prev30) / prev30 * 100 : null;
+    const deltaHtml = delta === null ? 'no prior 30 days to compare'
+      : `<span class="${delta >= 0 ? 'up' : 'down'}">${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta).toFixed(0)}%</span> vs previous 30 days`;
+    const prs = sumOf(days, 'prs'), merged = sumOf(days, 'prsMerged');
+    const tiles = [
+      ['Total contributions', fmt(total), `${fmt1(total / days.length)} per day on average`],
+      ['Commits', fmt(sumOf(days, 'commits')), `${fmt(prs)} PRs (${fmt(merged)} merged) · ${fmt(sumOf(days, 'reviews'))} reviews`],
+      ['Active days', fmt(active), `${(active / days.length * 100).toFixed(0)}% of ${fmt(days.length)} days`],
+      ['Longest streak', `${fmt(longest)} day${longest === 1 ? '' : 's'}`, `current streak: ${current} day${current === 1 ? '' : 's'}`],
+      ['Busiest day', fmt(busiest.total), fmtDate(busiest.d)],
+      ['Last 30 days', fmt(last30), deltaHtml],
+    ];
+    el('kpis').innerHTML = tiles.map(([l, v, s]) =>
+      `<div class="kpi"><div class="label">${l}</div><div class="value">${v}</div><div class="sub">${s}</div></div>`).join('');
+  }
+
+  // ---------- side panels ----------
+  function hbars(items, color) {
+    if (!items.length) return '<p class="empty">No commits in this range.</p>';
+    const max = items[0].value;
+    return items.map(it => `<div class="hbar"><span class="name" title="${esc(it.name)}">${esc(it.name)}</span>
+      <div class="track"><div class="fill" style="width:${(it.value / max * 100).toFixed(1)}%;${color ? `background:${color}` : ''}"></div></div>
+      <span class="num">${fmt1(it.value)}</span></div>`).join('');
+  }
+
+  function renderPanels(days) {
+    const from = days[0].date, to = days[days.length - 1].date;
+    const repoTotals = S.repos.map(r => {
+      let c = 0;
+      for (const [d, v] of Object.entries(r.daily || {})) if (d >= from && d <= to) c += v;
+      return { name: r.name.split('/')[1] + (r.private ? ' 🔒' : ''), full: r.name, value: c, language: r.language || 'Unknown' };
+    }).filter(r => r.value > 0).sort((a, b) => b.value - a.value);
+    el('repos').innerHTML = hbars(repoTotals.slice(0, 8));
+
+    const langs = {};
+    repoTotals.forEach(r => langs[r.language] = (langs[r.language] || 0) + r.value);
+    const langItems = Object.entries(langs).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+    el('langs').innerHTML = hbars(langItems.slice(0, 8));
+
+    const wsum = Array(7).fill(0), wcnt = Array(7).fill(0);
+    days.forEach(d => { const w = (d.d.getDay() + 6) % 7; wsum[w] += d.total; wcnt[w]++; });
+    const wItems = WEEKDAYS.map((name, i) => ({ name, value: wcnt[i] ? wsum[i] / wcnt[i] : 0 }));
+    const wMax = Math.max(...wItems.map(w => w.value), 1e-9);
+    el('weekday').innerHTML = wItems.map(it => `<div class="hbar"><span class="name">${it.name}</span>
+      <div class="track"><div class="fill" style="width:${(it.value / wMax * 100).toFixed(1)}%"></div></div>
+      <span class="num">${fmt1(it.value)}</span></div>`).join('');
+  }
+
+  function renderTable(days) {
+    const months = new Map();
+    days.forEach(d => {
+      const k = d.date.slice(0, 7);
+      if (!months.has(k)) months.set(k, { total: 0, prsMerged: 0, active: 0, ...Object.fromEntries(SERIES.map(s => [s.key, 0])) });
+      const m = months.get(k);
+      SERIES.forEach(s => m[s.key] += d[s.key]);
+      m.total += d.total; m.prsMerged += d.prsMerged; m.active += d.total > 0 ? 1 : 0;
+    });
+    el('table').innerHTML = `<table><thead><tr><th>Month</th>${SERIES.map(s => `<th>${s.label}</th>`).join('')}<th>PRs merged</th><th>Total</th><th>Active days</th></tr></thead><tbody>
+      ${[...months].map(([k, m]) => `<tr><td>${MONTHS[Number(k.slice(5)) - 1]} ${k.slice(0, 4)}</td>${SERIES.map(s => `<td>${fmt(m[s.key])}</td>`).join('')}<td>${fmt(m.prsMerged)}</td><td><b>${fmt(m.total)}</b></td><td>${m.active}</td></tr>`).join('')}
+    </tbody></table>`;
+  }
+
+  // ---------- wiring ----------
+  function render() {
+    const days = visibleDays();
+    const a = days[0].d, b = days[days.length - 1].d;
+    const span = a.getFullYear() === b.getFullYear()
+      ? `${MONTHS[a.getMonth()]}–${MONTHS[b.getMonth()]} ${b.getFullYear()}`
+      : `${MONTHS[a.getMonth()]} ${a.getFullYear()}–${MONTHS[b.getMonth()]} ${b.getFullYear()}`;
+    el('subtitle').textContent = `${p.name || p.login} on GitHub, ${span}`;
+    renderChart(days);
+    renderKpis(days);
+    renderPanels(days);
+    renderTable(days);
+  }
+
+  function seg(id, key) {
+    el(id).addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      el(id).querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === btn));
+      state[key] = btn.dataset.v;
+      // Daily bars over many years are sub-pixel; jump to monthly for the full history.
+      if (key === 'range' && state.range === 'all' && state.gran === 'day') {
+        state.gran = 'month';
+        el('gran').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.v === 'month'));
+      }
+      render();
+    });
+  }
+  seg('range', 'range');
+  seg('gran', 'gran');
+  if (allDays.length <= 365) el('range').querySelector('[data-v="all"]').remove();
+
+  el('theme').addEventListener('click', () => {
+    const root = document.documentElement;
+    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+
+  let t;
+  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(render, 120); });
+  render();
+})();
+</script>
+</body>
+</html>
